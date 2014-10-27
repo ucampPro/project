@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				  "dtd/mybatis-3-mapper.dtd">
+<mapper namespace="s">
+	<resultMap id="scheduleResult" type="schedule">
+		<result property="code" column="code" />
+		<result property="year" column="year" />
+		<result property="month" column="month" />
+		<result property="day" column="day" />
+		<result property="hour" column="hour" />
+		<result property="firstTeam" column="firstTeam" />
+		<result property="secondTeam" column="secondTeam" />
+		<result property="firstScore" column="firstScore" />
+		<result property="secondScore" column="secondScore" />
+	</resultMap>	
+	
+	<select id="selectAll" resultMap="scheduleResult" >
+		select * from schedule
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultMap="scheduleResult">
+		select * from schedule where code=#{code}
+	</select>
+	
+	<select id="selectMonth" parameterType="hashMap" resultMap="scheduleResult">
+		select * from schedule where year=#{year} and month=#{month}
+	</select>
+	
+	<select id="selectDay" parameterType="hashMap" resultMap="scheduleResult">
+		select * from schedule where year=#{year} and month=#{month} and day=#{day}
+	</select>
+	
+	<insert id="insert" parameterType="schedule">
+		insert into schedule (code,year,month,day,hour,firstTeam,secondTeam)
+		values (schedule_SEQ.NEXTVAL,#{year},#{month},#{day},#{hour},#{firstTeam},#{secondTeam})
+	</insert>
+	
+	 <delete id="delete" parameterType="int">
+		delete from schedule where code=#{code}
+	</delete> 
+	
+	<update id="update" parameterType="schedule">
+		update schedule set year=#{year}, month=#{month}, day=#{day}, hour=#{hour}, firstTeam=#{firstTeam}, secondTeam=#{secondTeam} where code=#{code}
+	</update>
+	 
+	<update id="updateScore" parameterType="schedule">
+		update schedule
+		set firstScore=#{firstScore}, secondScore=#{secondScore}
+		where code=#{code}
+	</update>
+</mapper>

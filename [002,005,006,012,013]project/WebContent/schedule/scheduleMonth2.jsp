@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+	<tr>
+		<th>NO</th>
+		<th>일시</th>
+		<th>경기</th>
+		<th>결과</th>
+	</tr>
+<c:forEach items="${requestScope.list}" var="list" varStatus="num">
+	<tr>
+		<td>
+			${num.count}
+		</td>
+		<td>
+			${list.year}년 ${list.month}월 ${list.day}일 ${list.hour}시
+		</td>
+		<td>
+			${list.firstTeam} VS ${list.secondTeam}
+		</td>
+		<td>
+			<c:if test="${list.firstScore!=-1}">
+				${list.firstScore} VS ${list.secondScore}
+			</c:if>
+			<c:if test="${list.firstScore==-1}">
+				아직 경기 전입니다.
+			</c:if>
+		</td>
+	</tr>
+</c:forEach>
+</body>
+</html>

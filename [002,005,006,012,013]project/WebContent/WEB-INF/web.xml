@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>step12_myBatisWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Recordcontroller</display-name>
+    <servlet-name>Recordcontroller</servlet-name>
+    <servlet-class>controller.Recordcontroller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Recordcontroller</servlet-name>
+    <url-pattern>/Recordcontroller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ScheduleController</display-name>
+    <servlet-name>ScheduleController</servlet-name>
+    <servlet-class>controller.ScheduleController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ScheduleController</servlet-name>
+    <url-pattern>/sController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MainServletController</display-name>
+    <servlet-name>MainServletController</servlet-name>
+    <servlet-class>controller.MainServletController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MainServletController</servlet-name>
+    <url-pattern>/controller</url-pattern>
+  </servlet-mapping>
+</web-app>

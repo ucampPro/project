@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+th{
+	text-align: center;
+}
+td{
+	text-align: center;
+}
+</style>
+</head>
+
+<body onload="change()">
+<script type="text/javascript" src="js/httpRequest.js"></script>
+<script type="text/javascript">
+	var first ="first";
+	var second = "second";
+	var num1 = 1;
+	var num2 = 1;
+	var timer = 4 * 1000;
+	
+	function change(){
+		sendRequest("recordcontroller", null, viewData, "post");
+	}
+	
+	function viewData(){
+		var fir = null;
+		var sec = null;
+		
+		if(httpRequest.readyState == 4 && httpRequest.status == 200){
+			var data = httpRequest.responseText;
+			alert(data);
+			var sendData1 = data.split("/")[0].trim();
+			var sendData2 = data.split("/")[1].trim();
+			var result = data.split("/")[2].trim();
+			
+			var total1 = document.getElementById("total1");
+			var total2 = document.getElementById("total2");
+			
+			for(var i = 0; i < 9; i++){
+				var id1 = setTimeout(function(){
+					fir = first + num1;
+					var a = parseInt(sendData1.split(",")[num1 - 1], 10);
+					var data = parseInt(total1.firstChild.nodeValue, 10) + a;
+					document.getElementById(fir).innerHTML = a;
+					total1.innerHTML = data;
+					num1++;
+				}, 2 * 1000 + timer * i);
+			}
+			
+			var id2 = setInterval(function(){
+				sec = second + num2;
+				
+				var a = parseInt(sendData2.split(",")[num2 - 1], 10);
+				var data = parseInt(total2.firstChild.nodeValue, 10) + a;
+				document.getElementById(sec).innerHTML = a;
+				total2.innerHTML = data;
+				num2++;
+			}, timer);
+			
+			var res = setTimeout(function(){
+				document.getElementById("result").innerHTML = result;
+			}, 38 * 1000);
+			
+			setTimeout(function(){
+				clearTimeout(id1);
+				clearInterval(id2);
+			}, 38 * 1000);
+			
+			setTimeout(function(){
+				clearTimeout(res);
+			}, 42 * 1000);
+		}
+	}
+</script>
+<table border="1">
+	<tr>
+		<th>팀명</th><th>1회</th><th>2회</th><th>3회</th><th>4회</th><th>5회</th>
+		<th>6회</th><th>7회</th><th>8회</th><th>9회</th><th style="width:80px;">SCORE</th>
+	</tr>
+	<tr>
+		<td id="team1">LG</td><td id="first1"></td><td id="first2"></td><td id="first3"></td>
+		<td id="first4"></td><td id="first5"></td><td id="first6"></td><td id="first7"></td>
+		<td id="first8"></td><td id="first9"></td><td id="total1">0</td>
+	</tr>
+	<tr>
+		<td id="team2">삼성</td><td id="second1"></td><td id="second2"></td><td id="second3"></td>
+		<td id="second4"></td><td id="second5"></td><td id="second6"></td><td id="second7"></td>
+		<td id="second8"></td><td id="second9"></td><td id="total2">0</td>
+	</tr>
+</table><br>
+	<div id="result"></div>
+</body>
+</html>

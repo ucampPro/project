@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				  "dtd/mybatis-3-mapper.dtd">
+<mapper namespace="base">
+	<resultMap id="basemap" type="base">
+		<result property="teamname" column ="teamname" />
+		<result property="gamecount" column ="gamecount"/>
+		<result property="win" column ="win"/>
+		<result property="moo" column ="moo"/>
+		<result property="lose" column ="lose"/>
+		<result property="percent" column ="percent"/>
+	</resultMap>
+	
+	<resultMap id="basePermap" type="base">
+		<result property="gamecount" column ="gamecount"/>
+		<result property="win" column ="win"/>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="basemap">
+		select * from baseball order by win desc,lose asc
+	</select>		
+	
+	<select id="getPercent" parameterType="string" resultMap="basePermap">
+		select win, gamecount from baseball where teamname = #{value}
+	</select>
+	
+	<update id="updateBase" parameterType="base">
+		update baseball
+		set gamecount = gamecount + #{gamecount}, win = win + #{win}, moo = moo + #{moo},
+		lose = lose + #{lose}, percent = round(#{percent},2)
+		where teamname = #{teamname}
+	</update>		
+</mapper>

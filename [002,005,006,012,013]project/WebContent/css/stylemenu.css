@@ -1,0 +1,7 @@
+@charset="UTF-8";
+
+#indexcontainer	{ background-color:#F0EAE8; width:1100px; margin:0 auto; padding:1px; }
+#indexcontent		{ background-color:#F5F5F5; float:left; width:200px; height:450px; }
+#indexsideinfo		{ background-color:#FFFFFF; float:right; width:900px; height:450px; }
+
+
