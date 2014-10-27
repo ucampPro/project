@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	 "dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c">
+	<resultMap type="customer" id="resultCustomer">
+		<result property="custId" column="cust_id"/>
+		<result property="custName" column="cust_name"/>
+		<result property="custPwd" column="cust_pwd"/>
+		<result property="address" column="address"/>
+	</resultMap>
+	
+	<insert id="insertCustomer" parameterType="customer">
+		insert into customer values(#{custId},#{custName},#{custPwd},#{address})
+	</insert>
+	
+	<select id="selectAll" resultMap="resultCustomer">
+		select * from customer
+	</select>
+	
+	<update id="updateCustomer" parameterType="customer">
+		update customer set cust_name=#{custName},cust_pwd=#{custPwd},address=#{address} where cust_id=#{custId}
+	</update>
+	
+	<select id="selectCheck" parameterType="customer" resultMap="resultCustomer">
+		select * from customer where cust_id=#{custId} and cust_pwd=#{custPwd}
+	</select>
+	
+	<select id="selectId" parameterType="string" resultMap="resultCustomer">
+		select * from customer where cust_id=#{custId}
+	</select>
+	
+	<delete id="deleteCustomer" parameterType="string">
+		delete from customer where cust_id=#{custId}
+	</delete>
+</mapper>
+
+
+

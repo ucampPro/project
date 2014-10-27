@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"dtd/mybatis-3-config.dtd">
+	
+<configuration>
+	<properties resource="conf/db.properties"/>
+	
+	<typeAliases>
+		<typeAlias type="domain.BaseBallDTO" alias="base"/>
+		<typeAlias type="domain.ScheduleDTO" alias="schedule"/>
+		<typeAlias type="domain.CustomerDTO" alias="customer"/>
+	</typeAliases>
+
+	<environments default="env">			
+
+		<environment id="env">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.id}" />
+				<property name="password" value="${jdbc.pw}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="conf/record.xml" />
+		<mapper resource="conf/schedule.xml" />
+		<mapper resource="conf/customer.xml" />				
+	</mappers>
+</configuration>
+
+	

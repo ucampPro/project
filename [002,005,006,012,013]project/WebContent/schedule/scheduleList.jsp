@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<center>
 <h3>전체 일정 리스트</h3>
 <table border="1">
 	<tr>
@@ -39,5 +40,6 @@
 </c:forEach>
 </table>
 <a href="index.jsp">일정관리</a>
+</center>
 </body>
 </html>

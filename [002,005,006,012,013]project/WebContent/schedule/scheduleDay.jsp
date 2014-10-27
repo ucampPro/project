@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<center>
 <h3>일일일정보기</h3>
 <table border="1">
 	<tr>
@@ -37,5 +38,7 @@
 		</td>
 	</tr>
 </c:forEach>
+</table>
+</center>
 </body>
 </html>
