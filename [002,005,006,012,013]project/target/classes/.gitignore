@@ -1,7 +1,7 @@
-/conf
-/controller
-/domain
-/exception
+/conf/
+/controller/
+/domain/
+/exception/
 /log4j.properties
-/model
-/util
+/model/
+/util/
